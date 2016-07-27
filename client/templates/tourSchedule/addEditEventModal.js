@@ -67,13 +67,13 @@ Template.addEditEventModal.events({
     }*/
     Meteor.call( submitType, eventItem,eventModal.event, ( error ) => {
       if ( error ) {
-        console.log(error);
         Bert.alert( error.reason, 'danger' );
       } else {
         Bert.alert( `Event ${ eventModal.type }ed!`, 'success' );
         closeModal();
       }
     });
+
   },
   'click .delete-event' ( event, template ) {
     console.log("wow");
