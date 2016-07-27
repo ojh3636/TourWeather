@@ -10,11 +10,20 @@ Template.scheduleSubmit.onRendered(function() {
       $("#geocomplete").geocomplete({
         map: "#map",
         details: "form"
+      }).bind("geocode:result", (event, results) => {
+        let res = results.geometry.location.toJSON();
+        console.log(`latitude: ${res.lat}, altitude: ${res.lng}`);
+        Meteor.call('getWeatherForLocation', res, function(err, res) {
+          console.log("Result !!");
+          console.log(res);
+        })
       });
     }
   });
 
   $('#calendar').fullCalendar({
+    selectable: true,
+
     events(start, end, timezone, callback) {
       let data = SubTrips.find().fetch().map(function(event) {
         event.editable = !isPast(event.from);
@@ -28,14 +37,25 @@ Template.scheduleSubmit.onRendered(function() {
         callback(data);
       }
     },
-    dayClick(date){
 
+    dayClick(date){
+      console.log(date.format());
       Session.set('eventModal', {type:'add',date: date.format()});
       $('#add-edit-event-modal').modal('show');
     },
+
     eventClick(event) {
       Session.set('eventModal', {type: 'edit', event: event._id});
       $('#add-edit-event-modal').modal('show');
+    },
+
+    select(start, end) {
+      console.log(start);
+      console.log(end);
+      Session.set('eventModal', {type:'addMultiple',
+        dates: [start.format(), end.format()]});
+      $("#add-edit-event-modal").modal('show');
+      $("#calendar").fullCalendar('unselect');
     }
   });
 

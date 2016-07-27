@@ -27,10 +27,21 @@ Template.addEditEventModal.helpers({
     let eventModal = Session.get( 'eventModal' );
 
     if ( eventModal ) {
-      return eventModal.type === 'edit' ? Events.findOne( eventModal.event ) : {
-        start: eventModal.date,
-        end: eventModal.date
-      };
+      var result;
+      if (eventModal.type === 'edit') {
+        result = Events.findOne(eventModal.event);
+      } else if (eventModal.type === 'add') {
+        result = {
+          start: eventModal.date,
+          end: eventModal.date
+        };
+      } else {
+        result = {
+          start: eventModal.dates[0],
+          end: eventModal.dates[1]
+        };
+      }
+      return result;
     }
   }
 });
