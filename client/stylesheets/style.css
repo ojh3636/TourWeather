@@ -102,7 +102,13 @@
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
+.fc-time {
+  display: none;
+}
 
+.fc-content{
+  text-align:center;
+}
 .fc-event-container {
   padding: 5px !important;
 }

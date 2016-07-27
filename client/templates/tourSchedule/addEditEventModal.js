@@ -53,6 +53,7 @@ Template.addEditEventModal.helpers({
 Template.addEditEventModal.events({
   'submit form' ( event, template ) {
     event.preventDefault();
+    var mainTripId = Session.get("mainTripId");
 
     let eventModal = Session.get( 'eventModal' ),
         submitType = eventModal.type === 'edit' ? 'editEvent' : 'addEvent',
@@ -62,6 +63,7 @@ Template.addEditEventModal.events({
           end: new Date(template.find( '[name="end"]' ).value),
           lat: template.find( '[name="lat"]' ).value,
           lon: template.find( '[name="lng"]' ).value,
+          maintrip_id: mainTripId,
           uid: Meteor.userId()
         };
     console.log(eventModal.type);

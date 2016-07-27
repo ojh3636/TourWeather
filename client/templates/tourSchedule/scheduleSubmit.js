@@ -20,12 +20,15 @@ Template.scheduleSubmit.onRendered(function() {
   //  }
   //});
 
+
   $('#calendar').fullCalendar({
+
     selectable: true,
     editable: true,
 
     events(start, end, timezone, callback) {
-      let data = SubTrips.find().fetch().map(function(event) {
+      var mainTripId = Session.get('mainTripId');
+      let data = SubTrips.find({maintrip_id : mainTripId}).fetch().map(function(event) {
         event.editable = !isPast(event.from);
         event.start = event.from;
         event.title = event.place;
@@ -74,6 +77,6 @@ Template.scheduleSubmit.onRendered(function() {
 
   $('#add-edit-event-modal').on('hidden.bs.modal', function (e) {
     $(this).find(".autocomplete").val('').end();
-  })
+  });
 
 });
