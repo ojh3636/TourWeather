@@ -22,6 +22,7 @@ Template.scheduleSubmit.onRendered(function() {
 
   $('#calendar').fullCalendar({
     selectable: true,
+    editable: true,
 
     events(start, end, timezone, callback) {
       let data = SubTrips.find().fetch().map(function(event) {
@@ -34,6 +35,14 @@ Template.scheduleSubmit.onRendered(function() {
 
       if (data) {
         callback(data);
+      }
+    },
+
+    eventDrop(event, delta, revert) {
+      console.log("SIbal!!");
+      let date = event.start.format();
+      if(!isPast(data)) {
+        console.log("Move!!");
       }
     },
 
@@ -50,6 +59,10 @@ Template.scheduleSubmit.onRendered(function() {
         dates: [start.format(), end.subtract(1, 'day').format()]});
       $("#add-edit-event-modal").modal('show');
       $("#calendar").fullCalendar('unselect');
+    },
+
+    eventResize(callback) {
+      console.log("resize");
     }
   });
 

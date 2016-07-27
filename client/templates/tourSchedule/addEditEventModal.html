@@ -12,11 +12,11 @@
 
               <div class="col-xs-12 col-sm-3">
                 <label for="start">Event Starts</label>
-                <input disabled type="text" name="start" class="form-control" value="{{event.start}}">
+                <input type="text" name="start" class="form-control" value="{{modalFormat event.from}}">
               </div>
               <div class="col-xs-12 col-sm-3">
                 <label for="end">Event End</label>
-                <input disabled type="text" name="end" class="form-control" value="{{#if event.end}}{{event.end}}{{else}}{{event.start}}{{/if}}">
+                <input type="text" name="end" class="form-control" value="{{#if event.end}}{{modalFormat event.end}}{{else}}{{modalFormat event.from}}{{/if}}">
               </div>
 
           </div>

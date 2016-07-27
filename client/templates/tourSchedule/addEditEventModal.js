@@ -8,13 +8,6 @@ Template.addEditEventModal.onRendered(function() {
     if (GoogleMaps.loaded()) {
       $("#placecomplete").geocomplete({
         details: "form"
-      //})
-        //.bind("geocode:result", (event, results) => {
-        //let res = results.geometry.location.toJSON();
-        //Meteor.call('getWeatherForLocation', res, function(err, res) {
-        //  console.log("Result");
-        //  console.log(res);
-        //})
       });
     }
   });
@@ -26,6 +19,10 @@ Template.addEditEventModal.helpers({
     if ( eventModal ) {
       return eventModal.type === type;
     }
+  },
+  modalFormat(dateString) {
+    console.log(dateString);
+    return moment(dateString).format().slice(0, 10);
   },
   modalLabel() {
     let eventModal = Session.get( 'eventModal' );
@@ -46,7 +43,7 @@ Template.addEditEventModal.helpers({
     if ( eventModal ) {
       return eventModal.type === 'edit' ? SubTrips.findOne(eventModal.event) :
       {
-        start: eventModal.dates[0],
+        from: eventModal.dates[0],
         end: eventModal.dates[1]
       };
     }
