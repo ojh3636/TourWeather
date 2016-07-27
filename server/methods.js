@@ -53,7 +53,6 @@ Meteor.methods({
    addMainTrip(user_id) {
 
      var maintrip_item = {
-       title: "무제! 제목을 수정해주세요",
        uid: user_id
      };
 
@@ -72,7 +71,19 @@ Meteor.methods({
      try {
        return MainTrips.remove(mainTrip_id);
      } catch (exception) {
-       throw new Meteor.Error('500',`${exception}`);		
+       throw new Meteor.Error('500',`${exception}`);
      }
    }
  });
+
+Meteor.methods({
+  addTitle(mainTrip_id,title) {
+    try{
+      return MainTrips.update(mainTrip_id, {
+        $set: {title: title},
+      });
+    } catch(exception) {
+      throw new Meteor.Error('500',`${exception}`);
+    }
+  }
+});

@@ -79,8 +79,13 @@ Template.scheduleSubmit.onRendered(function() {
 });
 
 Template.scheduleSubmit.events({
-  "click #submit": function(event, template){
+  "submit form": function(event, template){
+    event.preventDefault();
     Session.set('is_submit',true);
+    var mainTripId = Session.get('mainTripId');
+    console.log("title: " + template.find('[name=title]').value);
+    Meteor.call("addTitle",mainTripId,template.find('[name=title]').value);
+
 //    console.log("click submit" + Session.get('is_submit'));
     Router.go("mainTrip");
   } ,
@@ -88,5 +93,14 @@ Template.scheduleSubmit.events({
     Session.set('is_submit',false);
 //    console.log("click return" + Session.get('is_submit'));
     Router.go("mainTrip");
+  }
+});
+
+Template.scheduleSubmit.helpers({
+  title: function() {
+    var mainTripId = Session.get("mainTripId");
+
+    //console.log(MainTrips.find({_id:mainTripId}).fetch()[0].title);
+    return MainTrips.find({_id:mainTripId}).fetch()[0].title;
   }
 });
