@@ -38,7 +38,6 @@ Template.addEditEventModal.helpers({
 Template.addEditEventModal.events({
   'submit form' ( event, template ) {
     event.preventDefault();
-
     let eventModal = Session.get( 'eventModal' ),
         submitType = eventModal.type === 'edit' ? 'editEvent' : 'addEvent',
         eventItem  = {
@@ -53,11 +52,24 @@ Template.addEditEventModal.events({
 
     Meteor.call( submitType, eventItem, ( error ) => {
       if ( error ) {
+        console.log(submitType);
+
         Bert.alert( error.reason, 'danger' );
       } else {
         Bert.alert( `Event ${ eventModal.type }ed!`, 'success' );
         closeModal();
       }
     });
+  }
+});
+
+Meteor.methods({
+  addEvent( event ) {
+    check( event, SubTrips.simpleSchema());
+    try {
+      return Events.insert( event );
+    } catch ( exception ) {
+      throw new Meteor.Error( '500', `${ exception }` );
+    }
   }
 });
