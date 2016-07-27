@@ -48,3 +48,31 @@ Meteor.methods({
     }
   }
 });
+
+Meteor.methods({
+   addMainTrip(user_id) {
+
+     var maintrip_item = {
+       title: "무제! 제목을 수정해주세요",
+       uid: user_id
+     };
+
+     try {
+       return MainTrips.insert(maintrip_item);
+     } catch (exception) {
+       throw new Meteor.Error('500',`${ exception}`);
+     }
+   }
+ });
+
+ Meteor.methods({
+   removeMainTrip(mainTrip_id) {
+     check (mainTrip_id, String );
+
+     try {
+       return MainTrips.remove(mainTrip_id);
+     } catch (exception) {
+       throw new Meteor.Error('500',`${exception}`);		
+     }
+   }
+ });

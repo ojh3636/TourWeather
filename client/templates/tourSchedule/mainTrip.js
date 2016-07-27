@@ -3,6 +3,6 @@ Template.mainTrip.helpers({
     return MainTrips.find({uid:Meteor.userId()});
   },
   subTrips : function() {
-    return SubTrips.find({})
+    return SubTrips.find({});
   }
 });
