@@ -3,6 +3,8 @@ let closeModal = () => {
   $( '.modal-backdrop' ).fadeOut();
 };
 
+
+
 Template.addEditEventModal.helpers({
   modalType( type ) {
     let eventModal = Session.get( 'eventModal' );
@@ -53,8 +55,9 @@ Template.addEditEventModal.events({
         submitType = eventModal.type === 'edit' ? 'editEvent' : 'addEvent',
         eventItem  = {
           place: template.find( '[name="place"]' ).value,
-          from: template.find( '[name="start"]' ).value,
-          end: template.find( '[name="end"]' ).value,
+          from: new Date(template.find( '[name="start"]' ).value),
+          end: new Date(template.find( '[name="end"]' ).value),
+          uid: Meteor.userId()
         };
 
     if ( submitType === 'editEvent' ) {
@@ -63,24 +66,12 @@ Template.addEditEventModal.events({
 
     Meteor.call( submitType, eventItem, ( error ) => {
       if ( error ) {
-        console.log(submitType);
-
+        console.log(error);
         Bert.alert( error.reason, 'danger' );
       } else {
         Bert.alert( `Event ${ eventModal.type }ed!`, 'success' );
         closeModal();
       }
     });
-  }
-});
-
-Meteor.methods({
-  addEvent( event ) {
-    check( event, SubTrips.simpleSchema());
-    try {
-      return Events.insert( event );
-    } catch ( exception ) {
-      throw new Meteor.Error( '500', `${ exception }` );
-    }
   }
 });

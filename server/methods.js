@@ -9,3 +9,15 @@ Meteor.methods({
     return response;
   }
 });
+
+Meteor.methods({
+  addEvent( event ) {
+    check( event, SubTrips.simpleSchema());
+
+    try {
+      return SubTrips.insert( event );
+    } catch ( exception ) {
+      throw new Meteor.Error( '500', `${ exception }` );
+    }
+  }
+});
