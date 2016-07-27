@@ -39,22 +39,17 @@ Template.scheduleSubmit.onRendered(function() {
     },
 
     eventDrop(event, delta, revert) {
-      console.log("SIbal!!");
       let date = event.start.format();
       if(!isPast(data)) {
-        console.log("Move!!");
       }
     },
 
     eventClick(event) {
-      console.log(event);
       Session.set('eventModal', {type: 'edit', event: event._id});
       $('#add-edit-event-modal').modal('show');
     },
 
     select(start, end) {
-      console.log(start);
-      console.log(end.toJSON());
       Session.set('eventModal', {type:'add',
         dates: [start.format(), end.subtract(1, 'day').format()]});
       $("#add-edit-event-modal").modal('show');
