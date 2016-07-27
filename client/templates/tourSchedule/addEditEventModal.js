@@ -3,7 +3,15 @@ let closeModal = () => {
   $( '.modal-backdrop' ).fadeOut();
 };
 
-
+Template.addEditEventModal.onRendered(function() {
+  this.autorun(function() {
+    if (GoogleMaps.loaded()) {
+      $("#placecomplete").geocomplete({
+        details: "form"
+      });
+    }
+  });
+});
 
 Template.addEditEventModal.helpers({
   modalType( type ) {
@@ -29,21 +37,11 @@ Template.addEditEventModal.helpers({
     let eventModal = Session.get( 'eventModal' );
 
     if ( eventModal ) {
-      var result;
-      if (eventModal.type === 'edit') {
-        result = Events.findOne(eventModal.event);
-      } else if (eventModal.type === 'add') {
-        result = {
-          start: eventModal.date,
-          end: eventModal.date
-        };
-      } else {
-        result = {
-          start: eventModal.dates[0],
-          end: eventModal.dates[1]
-        };
-      }
-      return result;
+      return eventModal.type === 'edit' ? Events.findOne(eventModal.event) :
+      {
+        start: eventModal.dates[0],
+        end: eventModal.dates[1]
+      };
     }
   }
 });
@@ -51,6 +49,7 @@ Template.addEditEventModal.helpers({
 Template.addEditEventModal.events({
   'submit form' ( event, template ) {
     event.preventDefault();
+
     let eventModal = Session.get( 'eventModal' ),
         submitType = eventModal.type === 'edit' ? 'editEvent' : 'addEvent',
         eventItem  = {

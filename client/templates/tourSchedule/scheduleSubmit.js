@@ -4,22 +4,21 @@ let isPast = (date) => {
 };
 
 Template.scheduleSubmit.onRendered(function() {
-  console.log("Rendered");
-  this.autorun(function() {
-    if (GoogleMaps.loaded()) {
-      $("#geocomplete").geocomplete({
-        map: "#map",
-        details: "form"
-      }).bind("geocode:result", (event, results) => {
-        let res = results.geometry.location.toJSON();
-        console.log(`latitude: ${res.lat}, altitude: ${res.lng}`);
-        Meteor.call('getWeatherForLocation', res, function(err, res) {
-          console.log("Result !!");
-          console.log(res);
-        })
-      });
-    }
-  });
+  //this.autorun(function() {
+  //  if (GoogleMaps.loaded()) {
+  //    $("#geocomplete").geocomplete({
+  //      map: "#map",
+  //      details: "form"
+  //    }).bind("geocode:result", (event, results) => {
+  //      let res = results.geometry.location.toJSON();
+  //      console.log(`latitude: ${res.lat}, altitude: ${res.lng}`);
+  //      Meteor.call('getWeatherForLocation', res, function(err, res) {
+  //        console.log("Result !!");
+  //        console.log(res);
+  //      })
+  //    });
+  //  }
+  //});
 
   $('#calendar').fullCalendar({
     selectable: true,
@@ -38,12 +37,6 @@ Template.scheduleSubmit.onRendered(function() {
       }
     },
 
-    dayClick(date){
-      console.log(date.format());
-      Session.set('eventModal', {type:'add',date: date.format()});
-      $('#add-edit-event-modal').modal('show');
-    },
-
     eventClick(event) {
       Session.set('eventModal', {type: 'edit', event: event._id});
       $('#add-edit-event-modal').modal('show');
@@ -51,9 +44,9 @@ Template.scheduleSubmit.onRendered(function() {
 
     select(start, end) {
       console.log(start);
-      console.log(end);
-      Session.set('eventModal', {type:'addMultiple',
-        dates: [start.format(), end.format()]});
+      console.log(end.toJSON());
+      Session.set('eventModal', {type:'add',
+        dates: [start.format(), end.subtract(1, 'day').format()]});
       $("#add-edit-event-modal").modal('show');
       $("#calendar").fullCalendar('unselect');
     }
@@ -64,5 +57,9 @@ Template.scheduleSubmit.onRendered(function() {
     SubTrips.find().fetch();
     $('#calendar').fullCalendar('refetchEvents');
   });
+
+  $('#add-edit-event-modal').on('hidden.bs.modal', function (e) {
+    $(this).find("#placecomplete").val('').end();
+  })
 
 });
