@@ -10,3 +10,9 @@ Template.specificTrip.events({
     Router.go("scheduleSubmit"); 
   }
 });
+
+Template.subTripItem.helpers({
+  dateFormat(dateString) {
+    return moment(dateString).format().slice(0, 10);
+  }
+});
