@@ -8,4 +8,7 @@ Template.scheduleSubmit.onRendered(function() {
       });
     }
   });
+
+  $('#calendar').fullCalendar();
+
 });

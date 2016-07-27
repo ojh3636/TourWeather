@@ -1,43 +1,51 @@
 <template name="scheduleSubmit">
+    <div class = "container-fluid">
+      <div class = "row">
 
-    <input id="geocomplete" plcaeholder="주소를 입력하세요" type="text"/>
-    <div id="map"></div>
+      <div class = "row">
+        <div class = "col-md-4">
+          <input id="geocomplete" plcaeholder="주소를 입력하세요" type="text"/>
+          <div id="map"></div>
+          <form>
+             <fieldset>
+                 <h3>Location data</h3>
 
-    <form>
-       <fieldset>
-           <h3>Location data</h3>
+                 <div class="input-group">
+                     <label>Name</label>
+                     <input name="name" type="text" value=""/>
+                 </div>
 
-           <div class="input-group">
-               <label>Name</label>
-               <input name="name" type="text" value=""/>
-           </div>
+                 <div class="input-group">
+                     <label>Latitude</label>
+                     <input name="lat" type="text" value=""/>
+                 </div>
 
-           <div class="input-group">
-               <label>Latitude</label>
-               <input name="lat" type="text" value=""/>
-           </div>
+                 <div class="input-group">
+                     <label>Longitude</label>
+                     <input name="lng" type="text" value=""/>
+                 </div>
 
-           <div class="input-group">
-               <label>Longitude</label>
-               <input name="lng" type="text" value=""/>
-           </div>
+                 <div class="input-group">
+                     <label>Location</label>
+                     <input name="location" type="text" value=""/>
+                 </div>
 
-           <div class="input-group">
-               <label>Location</label>
-               <input name="location" type="text" value=""/>
-           </div>
+                 <div class="input-group">
+                     <label>Formatted address</label>
+                     <input name="formatted_address" type="text" value=""/>
+                 </div>
 
-           <div class="input-group">
-               <label>Formatted address</label>
-               <input name="formatted_address" type="text" value=""/>
-           </div>
+                 <div class="input-group">
+                     <label>Country</label>
+                     <input name="country" type="text" value=""/>
+                 </div>
 
-           <div class="input-group">
-               <label>Country</label>
-               <input name="country" type="text" value=""/>
-           </div>
-
-       </fieldset>
-    </form>
-
+             </fieldset>
+          </form>
+        </div>
+        <div class="col-md-8">
+          <div id='calendar'></div>
+        </div>
+      </div>
+    </div>
 </template>
