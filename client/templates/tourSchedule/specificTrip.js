@@ -3,3 +3,10 @@ Template.specificTrip.helpers({
     return Template.currentData();
   }
 });
+
+Template.specificTrip.events({
+  "click #edit": function(event, template){
+    Session.set("edit_mode",true);
+    Router.go("scheduleSubmit"); 
+  }
+});

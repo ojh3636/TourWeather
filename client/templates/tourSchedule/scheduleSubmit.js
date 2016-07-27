@@ -28,6 +28,7 @@ Template.scheduleSubmit.onRendered(function() {
 
     events(start, end, timezone, callback) {
       var mainTripId = Session.get('mainTripId');
+      console.log(mainTripId);
       let data = SubTrips.find({maintrip_id : mainTripId}).fetch().map(function(event) {
         event.editable = !isPast(event.from);
         event.start = event.from;
