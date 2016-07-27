@@ -20,6 +20,10 @@ Template.addEditEventModal.helpers({
       return eventModal.type === type;
     }
   },
+  modalFormat(dateString) {
+    console.log(dateString);
+    return moment(dateString).format().slice(0, 10);
+  },
   modalLabel() {
     let eventModal = Session.get( 'eventModal' );
 
@@ -39,7 +43,7 @@ Template.addEditEventModal.helpers({
     if ( eventModal ) {
       return eventModal.type === 'edit' ? SubTrips.findOne(eventModal.event) :
       {
-        start: eventModal.dates[0],
+        from: eventModal.dates[0],
         end: eventModal.dates[1]
       };
     }

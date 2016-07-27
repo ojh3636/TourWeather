@@ -22,6 +22,7 @@ Template.scheduleSubmit.onRendered(function() {
 
   $('#calendar').fullCalendar({
     selectable: true,
+    editable: true,
 
     events(start, end, timezone, callback) {
       let data = SubTrips.find().fetch().map(function(event) {
@@ -37,7 +38,16 @@ Template.scheduleSubmit.onRendered(function() {
       }
     },
 
+    eventDrop(event, delta, revert) {
+      console.log("SIbal!!");
+      let date = event.start.format();
+      if(!isPast(data)) {
+        console.log("Move!!");
+      }
+    },
+
     eventClick(event) {
+      console.log(event);
       Session.set('eventModal', {type: 'edit', event: event._id});
       $('#add-edit-event-modal').modal('show');
     },
@@ -49,6 +59,10 @@ Template.scheduleSubmit.onRendered(function() {
         dates: [start.format(), end.subtract(1, 'day').format()]});
       $("#add-edit-event-modal").modal('show');
       $("#calendar").fullCalendar('unselect');
+    },
+
+    eventResize(callback) {
+      console.log("resize");
     }
   });
 
@@ -59,7 +73,7 @@ Template.scheduleSubmit.onRendered(function() {
   });
 
   $('#add-edit-event-modal').on('hidden.bs.modal', function (e) {
-    $(this).find("#placecomplete").val('').end();
+    $(this).find(".autocomplete").val('').end();
   })
 
 });

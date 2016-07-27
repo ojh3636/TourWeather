@@ -12,49 +12,49 @@
 
               <div class="col-xs-12 col-sm-3">
                 <label for="start">Event Starts</label>
-                <input disabled type="text" name="start" class="form-control" value="{{event.start}}">
+                <input type="text" name="start" class="form-control" value="{{modalFormat event.from}}">
               </div>
               <div class="col-xs-12 col-sm-3">
                 <label for="end">Event End</label>
-                <input disabled type="text" name="end" class="form-control" value="{{#if event.end}}{{event.end}}{{else}}{{event.start}}{{/if}}">
+                <input type="text" name="end" class="form-control" value="{{#if event.end}}{{modalFormat event.end}}{{else}}{{modalFormat event.from}}{{/if}}">
               </div>
 
           </div>
           <div class="form-group">
             <label for="place">장소</label>
-            <input type="text" id="placecomplete" name="place" class="form-control" value="{{event.place}}">
+            <input type="text" id="placecomplete" name="place" class="form-control autocomplete" value="{{event.place}}">
           </div>
             <fieldset>
                 <h3>Location data</h3>
 
                 <div class="input-group">
                     <label>Name</label>
-                    <input name="name" disabled class="form-control" type="text" value=""/>
+                    <input name="name" disabled class="form-control autocomplete" type="text" value=""/>
                 </div>
 
                 <div class="input-group">
                     <label>Latitude</label>
-                    <input name="lat" disabled class="form-control" type="text" value=""/>
+                    <input name="lat" disabled class="form-control autocomplete" type="text" value=""/>
                 </div>
 
                 <div class="input-group">
                     <label>Longitude</label>
-                    <input name="lng" disabled class="form-control" type="text" value=""/>
+                    <input name="lng" disabled class="form-control autocomplete" type="text" value=""/>
                 </div>
 
                 <div class="input-group">
                     <label>Location</label>
-                    <input name="location" disabled class="form-control" type="text" value=""/>
+                    <input name="location" disabled class="form-control autocomplete" type="text" value=""/>
                 </div>
 
                 <div class="input-group">
                     <label>Formatted address</label>
-                    <input name="formatted_address" disabled class="form-control" type="text" value=""/>
+                    <input name="formatted_address" disabled class="form-control autocomplete" type="text" value=""/>
                 </div>
 
                 <div class="input-group">
                     <label>Country</label>
-                    <input name="country" disabled class="form-control" type="text" value=""/>
+                    <input name="country" disabled class="form-control autocomplete" type="text" value=""/>
                 </div>
 
             </fieldset>
