@@ -72,6 +72,7 @@ Template.scheduleSubmit.onRendered(function() {
 
   $('#add-edit-event-modal').on('hidden.bs.modal', function (e) {
     $(this).find(".autocomplete").val('').end();
+    Session.set('eventModal', {});
   });
 
 });
