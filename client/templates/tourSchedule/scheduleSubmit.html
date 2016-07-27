@@ -1,4 +1,43 @@
 <template name="scheduleSubmit">
-  
+
+    <input id="geocomplete" plcaeholder="주소를 입력하세요" type="text"/>
+    <div id="map"></div>
+
+    <form>
+       <fieldset>
+           <h3>Location data</h3>
+
+           <div class="input-group">
+               <label>Name</label>
+               <input name="name" type="text" value=""/>
+           </div>
+
+           <div class="input-group">
+               <label>Latitude</label>
+               <input name="lat" type="text" value=""/>
+           </div>
+
+           <div class="input-group">
+               <label>Longitude</label>
+               <input name="lng" type="text" value=""/>
+           </div>
+
+           <div class="input-group">
+               <label>Location</label>
+               <input name="location" type="text" value=""/>
+           </div>
+
+           <div class="input-group">
+               <label>Formatted address</label>
+               <input name="formatted_address" type="text" value=""/>
+           </div>
+
+           <div class="input-group">
+               <label>Country</label>
+               <input name="country" type="text" value=""/>
+           </div>
+
+       </fieldset>
+    </form>
 
 </template>
