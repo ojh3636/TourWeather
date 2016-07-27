@@ -29,32 +29,20 @@
 
                 <div class="input-group">
                     <label>Name</label>
-                    <input name="name" disabled class="form-control autocomplete" type="text" value=""/>
+                    <input name="name" disabled class="form-control autocomplete" type="text"
+                           value="{{#if event.place}}{{event.place}}{{/if}}"/>
                 </div>
 
                 <div class="input-group">
                     <label>Latitude</label>
-                    <input name="lat" disabled class="form-control autocomplete" type="text" value=""/>
+                    <input name="lat" disabled class="form-control autocomplete" type="text"
+                           value="{{#if event.lat}}{{event.lat}}{{/if}}"/>
                 </div>
 
                 <div class="input-group">
                     <label>Longitude</label>
-                    <input name="lng" disabled class="form-control autocomplete" type="text" value=""/>
-                </div>
-
-                <div class="input-group">
-                    <label>Location</label>
-                    <input name="location" disabled class="form-control autocomplete" type="text" value=""/>
-                </div>
-
-                <div class="input-group">
-                    <label>Formatted address</label>
-                    <input name="formatted_address" disabled class="form-control autocomplete" type="text" value=""/>
-                </div>
-
-                <div class="input-group">
-                    <label>Country</label>
-                    <input name="country" disabled class="form-control autocomplete" type="text" value=""/>
+                    <input name="lng" disabled class="form-control autocomplete" type="text"
+                           value="{{#if event.lon}}{{event.lon}}{{/if}}"/>
                 </div>
 
             </fieldset>

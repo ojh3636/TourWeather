@@ -21,7 +21,6 @@ Template.addEditEventModal.helpers({
     }
   },
   modalFormat(dateString) {
-    console.log(dateString);
     return moment(dateString).format().slice(0, 10);
   },
   modalLabel() {
@@ -58,7 +57,7 @@ Template.addEditEventModal.events({
     let eventModal = Session.get( 'eventModal' ),
         submitType = eventModal.type === 'edit' ? 'editEvent' : 'addEvent',
         eventItem  = {
-          place: template.find( '[name="place"]' ).value,
+          place: template.find( '[name="name"]' ).value,
           from: new Date(template.find( '[name="start"]' ).value),
           end: new Date(template.find( '[name="end"]' ).value),
           lat: template.find( '[name="lat"]' ).value,
