@@ -37,7 +37,7 @@ Template.addEditEventModal.helpers({
     let eventModal = Session.get( 'eventModal' );
 
     if ( eventModal ) {
-      return eventModal.type === 'edit' ? Events.findOne(eventModal.event) :
+      return eventModal.type === 'edit' ? SubTrips.findOne(eventModal.event) :
       {
         start: eventModal.dates[0],
         end: eventModal.dates[1]
@@ -56,14 +56,16 @@ Template.addEditEventModal.events({
           place: template.find( '[name="place"]' ).value,
           from: new Date(template.find( '[name="start"]' ).value),
           end: new Date(template.find( '[name="end"]' ).value),
+          lat: template.find( '[name="lat"]' ).value,
+          lon: template.find( '[name="lng"]' ).value,
           uid: Meteor.userId()
         };
+    console.log(eventModal.type);
 
-    if ( submitType === 'editEvent' ) {
+    /*if ( submitType === 'editEvent' ) {
       eventItem._id   = eventModal.event;
-    }
-
-    Meteor.call( submitType, eventItem, ( error ) => {
+    }*/
+    Meteor.call( submitType, eventItem,eventModal.event, ( error ) => {
       if ( error ) {
         console.log(error);
         Bert.alert( error.reason, 'danger' );
@@ -72,5 +74,19 @@ Template.addEditEventModal.events({
         closeModal();
       }
     });
+  },
+  'click .delete-event' ( event, template ) {
+    console.log("wow");
+    let eventModal = Session.get( 'eventModal' );
+    Meteor.call( 'removeEvent', eventModal.event, ( error ) => {
+      if ( error ) {
+        console.log(error);
+        Bert.alert( error.reason, 'danger' );
+      } else {
+        Bert.alert( 'Event deleted!', 'success' );
+        closeModal();
+      }
+    });
   }
+
 });

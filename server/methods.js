@@ -21,3 +21,29 @@ Meteor.methods({
     }
   }
 });
+
+Meteor.methods({
+  editEvent( event, id ) {
+    check( event, SubTrips.simpleSchema());
+
+    try {
+      return SubTrips.update( id, {
+        $set: event
+      });
+    } catch ( exception ) {
+      throw new Meteor.Error( '500', `${ exception }` );
+    }
+  }
+});
+
+Meteor.methods({
+  removeEvent( event ) {
+    check( event, String );
+
+    try {
+      return SubTrips.remove( event );
+    } catch ( exception ) {
+      throw new Meteor.Error( '500', `${ exception }` );
+    }
+  }
+});
