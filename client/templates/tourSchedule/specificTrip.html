@@ -13,5 +13,19 @@
 <template name = "subTripItem">
   <div class="item well">
     <h3> {{place}} {{dateFormat from}} ~ {{dateFormat end}} </h3>
+      {{# each dayEntries lat lon from end}}
+          {{>weatherItem}}
+          <!--<p>{{dateFormat time}}</p>-->
+      {{/each}}
   </div>
+</template>
+
+<template name="weatherItem">
+   <div>
+       <p>{{dateFormat time}}</p>
+       <!--<p>{{lat}}</p>-->
+       <!--<p>{{lon}}</p>-->
+       {{weatherOfDay lat lon time}}
+       <p>최저기온: {{tempMin}} 최고기온: {{tempMax}} 날씨: {{summaryOfDay}}</p>
+   </div>
 </template>

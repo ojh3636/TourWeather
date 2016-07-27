@@ -31,3 +31,5 @@ themeteorchef:bert
 aldeed:simple-schema
 check
 momentjs:moment
+hpx7:async-template-helpers
+reactive-dict

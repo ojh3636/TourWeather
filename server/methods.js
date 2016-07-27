@@ -1,11 +1,11 @@
 Meteor.methods({
-  'getWeatherForLocation': function(location) {
+  'getWeatherForLocation': function(location, time) {
     console.log(location);
     this.unblock();
-    var Now = new Date().toISOString().slice(0, 19);
+    var Time = time.toISOString().slice(0, 19);
     var APPID = "c9bb7da531e89897c45c5beae23fba79";
     let apiReqUrl = `https://api.forecast.io/forecast/${APPID}/${location.lat}` +
-        `,${location.lng},${Now}?units=si`;
+        `,${location.lng},${Time}?units=si`;
     var response = Meteor.wrapAsync(apiCall)(apiReqUrl);
     return response;
   }

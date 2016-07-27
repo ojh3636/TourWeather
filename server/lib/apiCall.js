@@ -1,7 +1,6 @@
 apiCall = function(apiUrl, callback) {
   try {
     var response = HTTP.get(apiUrl).data;
-    console.log(response);
 
     callback(null, response);
   } catch (error) {
