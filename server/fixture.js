@@ -1,4 +1,4 @@
-if(MainTrips.find().count() ===2) {
+/*if(MainTrips.find().count() ===0) {
   console.log('adfasdf');
   MainTrips.insert({
     title : '가평여행2',
@@ -15,7 +15,7 @@ if(MainTrips.find().count() ===2) {
   });
 }
 
-if(SubTrips.find().count() === 2) {
+if(SubTrips.find().count() === 0) {
   SubTrips.insert({
     place : '음식점1',
     mainTrip_id : '1',
@@ -29,4 +29,4 @@ if(SubTrips.find().count() === 2) {
     start_time : '3',
     end_time : '4'
   });
-}
+}*/
