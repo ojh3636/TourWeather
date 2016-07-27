@@ -38,6 +38,7 @@ Template.scheduleSubmit.onRendered(function() {
     },
 
     eventClick(event) {
+      console.log(event);
       Session.set('eventModal', {type: 'edit', event: event._id});
       $('#add-edit-event-modal').modal('show');
     },
@@ -59,7 +60,7 @@ Template.scheduleSubmit.onRendered(function() {
   });
 
   $('#add-edit-event-modal').on('hidden.bs.modal', function (e) {
-    $(this).find("#placecomplete").val('').end();
+    $(this).find(".autocomplete").val('').end();
   })
 
 });

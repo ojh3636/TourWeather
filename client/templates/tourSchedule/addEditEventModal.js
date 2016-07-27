@@ -8,6 +8,13 @@ Template.addEditEventModal.onRendered(function() {
     if (GoogleMaps.loaded()) {
       $("#placecomplete").geocomplete({
         details: "form"
+      //})
+        //.bind("geocode:result", (event, results) => {
+        //let res = results.geometry.location.toJSON();
+        //Meteor.call('getWeatherForLocation', res, function(err, res) {
+        //  console.log("Result");
+        //  console.log(res);
+        //})
       });
     }
   });
