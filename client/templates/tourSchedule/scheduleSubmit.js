@@ -75,3 +75,16 @@ Template.scheduleSubmit.onRendered(function() {
   });
 
 });
+
+Template.scheduleSubmit.events({
+  "click #submit": function(event, template){
+    Session.set('is_submit',true);
+//    console.log("click submit" + Session.get('is_submit'));
+    Router.go("mainTrip");
+  } ,
+  "click #return": function(event, template) {
+    Session.set('is_submit',false);
+//    console.log("click return" + Session.get('is_submit'));
+    Router.go("mainTrip");
+  }
+});

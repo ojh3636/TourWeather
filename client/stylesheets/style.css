@@ -5,6 +5,9 @@
 .row {
     padding-top: 90px;
 }
+.item{
+  padding-top: 10px;
+}
 
 .panel-login {
 	border-color: #ccc;

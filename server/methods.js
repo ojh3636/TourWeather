@@ -3,7 +3,7 @@ Meteor.methods({
     console.log(location);
     this.unblock();
     var Now = new Date().toISOString().slice(0, 19);
-    var APPID = "XX";
+    var APPID = "c9bb7da531e89897c45c5beae23fba79";
     let apiReqUrl = `https://api.forecast.io/forecast/${APPID}/${location.lat}` +
         `,${location.lng},${Now}?units=si`;
     var response = Meteor.wrapAsync(apiCall)(apiReqUrl);
